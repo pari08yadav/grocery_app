@@ -1,0 +1,60 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+    <div class="index-container">
+        <h1 class="welcome-header">Welcome to Our Grocery App</h1>
+        <p class="intro-text">
+            Shop for your daily groceries from the comfort of your home. 
+            Explore our wide range of products and place your order online.
+        </p>
+
+        <div class="cta-buttons">
+            <a href="{% url 'product_list' %}" class="btn btn-primary">Browse Products</a>
+            <a href="{% url 'place_order' %}" class="btn btn-secondary">Place an Order</a>
+        </div>
+    </div>
+
+    <style>
+        .index-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .welcome-header {
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            color: #555;
+        }
+
+        .cta-buttons {
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+        }
+
+        .btn-secondary {
+            background-color: #007bff;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+{% endblock %}

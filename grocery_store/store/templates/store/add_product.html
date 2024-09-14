@@ -1,0 +1,37 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block content %}
+{% comment %} <form id="new-product-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Product</button>
+</form> {% endcomment %}
+<form method="post" action="{% url "add_product" %}" style="margin-top: -200px; width: 80%;">
+    {% csrf_token %}
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Unit</th>
+                <th>Price Per Unit</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% comment %} <td><label for="{{ form.name.id_for_label }}">Product Name:</label></td> {% endcomment %}
+                <td>{{ form.name }}</td>
+                <td>{{ form.unit }}</td>
+                <td>{{ form.price_per_unit }}</td>
+                <td> <button type="submit">Save Product</button> </td>
+            </tr>
+            <!-- Add additional fields as needed -->
+        </tbody>
+    </table>
+    
+</form>
+
+
+{% endblock %}

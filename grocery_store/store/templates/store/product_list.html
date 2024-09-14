@@ -1,0 +1,70 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Product List{% endblock %}
+
+{% block content %}
+<div class="table-container">
+
+    <!-- Display success messages -->
+    {% if messages %}
+        <ul id="message-container">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h1 class="table-heading">Product List</h1>
+    <a href="{% url 'add_product' %}" class="btn-new-product">New Product</a>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Unit</th>
+                <th>Price Per Unit</th>
+                {% comment %} <th>Quantity</th> {% endcomment %}
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody >
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.unit }}</td>
+                <td>{{ product.price_per_unit }}</td>
+                {% comment %} <td>{{ product.quantity }}</td> {% endcomment %}
+                <td>
+                    <form action="{% url 'delete_product' product.pk %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-delete">Delete</button>
+                    </form>
+                </td>
+                
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" style="text-align: center;">No products available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Wait until the DOM content is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Select the message container
+        const messageContainer = document.getElementById('message-container');
+
+        // If the message container exists, set a timeout to hide it after 5 seconds
+        if (messageContainer) {
+            setTimeout(function() {
+                messageContainer.style.display = 'none';
+            }, 5000);  // 5000 milliseconds = 5 seconds
+        }
+    });
+</script>
+
+
+{% endblock %}

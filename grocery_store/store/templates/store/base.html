@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Grocery Store{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'store/css/styles.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="/" style="color: white;"> Grocery Store </a>
+        </div>
+        <ul class="navbar-links">
+            <li><a href="{% url "product_list" %}">Product List</a></li>
+            <li><a href="{% url "add_product" %}">Add Product</a></li>
+            <li><a href="{% url "place_order" %}"> Place Orders</a></li>
+            <li><a href={% url "contact" %}>Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
